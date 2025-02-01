@@ -1,0 +1,93 @@
+Game,Mean,SD,Genre,Player,Price,Developer,Publisher,isIndie,hasAchv,hasSteamCloud,controllerSupport,accountRequired,hasKernel
+2k25,20992,5638,Sports,Hybrid,69.99,Visual Concepts,2K,0,1,1,1,1,0
+7daystodie,28033,4226,Survival,Hybrid,44.99,The Fun Pimpsq,The Fun Pimps Entertainment LLC,1,1,0,2,0,1
+ageofempires2,19007,4036,Strategy,Hybrid,35.99,hasMultiple,Xbox Game Studios,0,1,1,0,0,0
+apex,75616,27551,Battle Royale,Multiplayer,0,Respawn,Electronic Arts,0,1,0,1,1,1
+ark,27926,5346,Survival,Hybrid,14.99,hasMultiple,hasMultiple,1,1,1,2,0,0
+armareforger,7433,2270,Military,Hybrid,39.99,Bohemia Interactive,Bohemia Interactive,0,1,1,2,0,1
+balatro,31546,5544,Roguelike,Singleplayer,14.99,LocalThunk,Playstack,1,1,1,2,0,0
+baldurs,71439,13732,RPG,Hybrid,59.99,Larian Studios,Larian Studios,0,1,1,2,0,0
+banana,96795,1927,Clicker,Singleplayer,0,Sky,Sky,1,1,1,0,0,0
+beamngdrive,18044,4783,Racing,Singleplayer,24.99,BeamNG,BeamNG,1,1,1,2,0,0
+blackdesert,19756,2443,RPG,Multiplayer,9.99,Pearl Abyss,Pearl Abyss,0,0,0,1,1,0
+callofduty,72834,15146,Shooter,Hybrid,69.99,hasMultiple,Activision,0,1,0,1,1,0
+civ5,15413,2643,Strategy,Singleplayer,29.99,hasMultiple,2K,0,1,1,0,0,0
+civ6,52866,7622,Strategy,Hybrid,59.99,hasMultiple,2K,0,1,0,0,0,0
+cookieclicker,12207,786,Idler,Singleplayer,4.99,hasMultiple,Playsaurus,1,1,1,0,0,0
+crabgame,40387,1678,Battle Royale,Multiplayer,0,Dani,Dani,1,0,0,0,0,0
+crusaderkings3,18768,3854,Strategy,Hybrid,49.99,Paradox Development Studio,Paradox Interactive,0,1,1,0,0,0
+cs2,966513,279160,Shooter,Multiplayer,0,Valve,Valve,0,0,0,0,0,0
+cyberpunk,48969,5969,RPG,Singleplayer,59.99,CD PROJEKT RED,CD PROJEKT RED,0,1,1,1,0,0
+darkanddarker,12710,1501,Dungeon Crawler,Multiplayer,0,IRONMACE,IRONMACE,1,0,0,0,0,0
+dayz,42545,11696,Survival,Multiplayer,49.99,Bohemia Interactive,Bohemia Interactive,0,1,1,0,0,0
+dbd,32124,5311,Survival,Multiplayer,19.99,Behaviour Interactive Inc,Behaviour Interactive Inc,0,1,1,1,0,1
+deadlock,13307,3175,MOBA,Multiplayer,0,Valve,Valve,0,0,0,0,0,0
+deltaforce,74403,16573,Shooter,Hybrid,0,Team Jade,TiMi Studio Group,0,1,0,0,1,1
+destiny2,18047,2504,Shooter,Hybrid,0,Bungie,Bungie,0,1,0,1,0,0
+dontstarvetogether,34865,13176,Survival,Multiplayer,14.99,Klei Entertainment,Klei Entertainment,0,0,0,1,0,0
+dota2,464083,128591,MOBA,Multiplayer,0,Valve,Valve,0,0,0,0,0,0
+dynwarriors,29000,6737,Hack and Slash,Singleplayer,69.99,"KOEI TECMO GAMES CO., LTD.","KOEI TECMO GAMES CO., LTD.",0,1,1,2,0,0
+eldenring,53399,7410,RPG,Hybrid,59.99,"FromSoftware, Inc.",hasMultiple,0,1,1,1,0,0
+europauniversalis4,16413,3726,Strategy,Hybrid,49.99,hasMultiple,Paradox Interactive,0,1,1,0,0,0
+eurotrucksimulator2,37157,16388,Driving,Hybrid,19.99,SCS Software,SCS Software,0,1,1,1,0,0
+factorio,27262,5612,Management,Hybrid,35,Wube Software LTD. ,Wube Software LTD.,1,1,1,1,0,0
+fallout4,14409,2604,RPG,Singleplayer,19.99,Bethesda Game Studios,Bethesda Softworks,0,1,1,2,0,0
+farmingsimulator25,29447,12177,Management,Hybrid,49.99,Giants Software,Giants Software,1,1,1,2,0,0
+fc25,52192,17093,Sports,Hybrid,69.99,Electronic Arts,Electronic Arts,1,1,0,2,1,1
+ff14online,18034,3961,RPG,Hybrid,19.99,Square Enix,Square Enix,0,0,0,1,0,0
+footballmanager,50713,14498,Management,Singleplayer,59.99,Sports Interactive,SEGA,0,1,1,0,0,0
+garrysmod,22940,5745,Sandbox,Hybrid,9.99,Facepunch Studios,Valve,0,1,1,0,0,0
+geometrydash,15090,3459,Music,Singleplayer,4.99,RobTop Games,RobTop Games,1,1,0,1,0,0
+governorofpoker3,14664,242,Gambling,Multiplayer,0,Playtika Ltd.,Playtika Ltd.,1,0,0,0,0,0
+gta5,136747,33647,Shooter,Hybrid,29.99,Rockstar North,Rockstar Games,0,1,0,2,1,1
+heartsofiron4,41582,9638,Strategy,Hybrid,49.99,Paradox Development Studio,Paradox Interactive,0,1,1,0,0,0
+helldivers2,62259,12700,Shooter,Multiplayer,39.99,Arrowhead Game Studios,Playstation Publishing LLC,0,1,0,1,1,1
+heroesofhammerwatch2,9631,2567,RPG,Hybrid,17.99,Crackshell,Crackshell,1,1,1,2,0,0
+l4d2,29080,5105,Shooter,Hybrid,9.99,Valve,Valve,0,1,1,2,0,0
+legendsofidleonmmo,7716,701,Idler,Hybrid,0,Lavaflame2,Lavaflame2,1,1,0,0,0,0
+lethalcompany,16869,3930,Survival,Hybrid,9.99,Zeekerss,Zeekerss,1,0,0,1,0,0
+limbuscompany,16137,4980,RPG,Singleplayer,0,ProjectMoon,ProjectMoon,1,0,0,0,0,0
+lostark,28247,3916,RPG,Hybrid,0,Smilegate RPG,Amazon Games,0,1,0,1,0,1
+marvelrivals,314438,77136,Shooter,Multiplayer,0,NetEase Games,NetEase Games,0,1,0,2,0,0
+mir4,17651,524,RPG,Multiplayer,0,Wemade Next,Wemade,1,0,0,0,0,0
+mountandbladebanner,23330,5704,Strategy,Hybrid,49.99,TaleWorlds Entertainment,TaleWorlds Entertainment,0,1,1,1,0,0
+naraka,98965,69251,Battle Royale,Multiplayer,0,24 Entertainment,NetEase Games Global,0,1,0,1,0,0
+oncehuman,29327,5595,Survival,Multiplayer,0,Starry Studio,Starry Studio,0,0,0,2,0,0
+overwatch2,21923,4206,Shooter,Multiplayer,0,"Blizzard Entertainment, Inc","Blizzard Entertainment, Inc",0,1,0,2,1,0
+palworld,112457,24840,Survival,Hybrid,29.99,Pocketpair,Pocketpair,1,1,1,2,0,0
+pathofexile2,240942,49307,RPG,Hybrid,29.99,Grinding Gear Games,Grinding Gear Games,0,0,0,2,0,0
+payday2,28506,1132,Shooter,Hybrid,9.99,OVERKILL,Starbreeze Publishing AB,0,1,1,2,0,0
+phasmophobia,23485,7658,Horror,Hybrid,19.99,Kinetic Games,Kinetic Games,1,1,1,2,0,0
+pubg,349445,200867,Battle Royale,Multiplayer,0,PUBG Corporation,"KRAFTON, Inc.",0,1,0,0,0,0
+rdr2,36919,6171,Shooter,Singleplayer,14.99,Rockstar Games,Rockstar Games,0,1,0,1,1,0
+readyornot,12254,2075,Shooter,Hybrid,49.99,VOID Interactive,VOID Interactive,1,1,1,2,0,0
+isaacrebirth,30807,5512,Roguelike,Singleplayer,14.99,hasMultiple,"Nicalis, Inc",1,1,1,2,0,0
+rocketleague,18899,6961,Sports,Hybrid,0,Psyonix LLC,Psyonix LLC,0,1,1,1,1,0
+rust,133941,31272,Survival,Multiplayer,39.99,Facepunch Studios,Facepunch Studios,1,1,0,0,0,1
+satisfactory,23290,5170,Management,Hybrid,39.99,Coffee Stain Studios,Coffee Stain Publishing,1,1,1,0,0,0
+scum,16287,3457,Survival,Hybrid,39.99,Gamepires,Jagex Ltd,0,1,0,0,0,0
+siege,55999,10169,Shooter,Hybrid,19.99,Ubisoft Montreal,Ubisoft,0,0,0,2,1,0
+sims4,32244,6359,Simulation,Singleplayer,0,Maxis,Electronic Arts,0,0,0,0,1,0
+skyrim,28761,5889,RPG,Singleplayer,39.99,Bethesda Game Studios,Bethesda Softworks,0,1,1,1,0,0
+slaythespire,14444,2328,Roguelike,Singleplayer,24.99,Mega Crit,Mega Crit,1,1,1,2,0,0
+smite2,2991,1241,MOBA,Multiplayer,0,Titan Forge Games,Hi-Rez Studios,0,1,0,2,0,1
+sonsoftheforest,22051,5857,Survival,Hybrid,29.99,Endnight Games Ltd,Newnight,1,1,1,2,0,0
+squad,16489,4171,Military,Multiplayer,49.99,Offworld,Offworld,0,0,0,1,0,1
+stardewvalley,77819,15409,Simulation,Hybrid,14.99,ConcernedApe,ConcernedApe,1,1,1,2,0,0
+stellaris,19235,2253,Strategy,Hybrid,39.99,Paradox Development Studio,Paradox Interactive,1,1,1,0,0,0
+terraria,30887,4608,Survival,Hybrid,9.99,Re-Logic,Re-Logic,1,1,1,2,0,0
+tf2,67834,4124,Shooter,Multiplayer,0,Valve,Valve,0,1,0,1,0,0
+thefinals,12877,2131,Shooter,Multiplayer,0,Embark Studios,Embark Studios,1,1,0,2,1,1
+thefirstdescendant,10826,1356,Shooter,Hybrid,0,"NEXON Games Co., Ltd.",NEXON,0,0,0,1,0,1
+throneandliberty,34873,8413,RPG,Multiplayer,0,NCSOFT,Amazon Games,0,1,0,2,0,1
+tmodloader,29168,4562,Survival,Hybrid,0,TML Team,hasMultiple,1,0,1,0,0,0
+unturned,15506,1537,Survival,Hybrid,0,Smartly Dressed Games,Smartly Dressed Games,1,1,1,0,0,1
+valheim,26033,7664,Survival,Hybrid,19.99,Iron Gaet AB,Coffee Stain Publishing,1,0,1,2,0,0
+vrchat,38661,4105,VR,Multiplayer,0,VRChat Inc.,VRChat Inc.,1,0,0,2,1,1
+warframe,59353,5052,Shooter,Hybrid,0,Digital Extremes,Digital Extremes,0,1,0,2,1,0
+warhammer3,28198,5371,Strategy,Hybrid,59.99,hasMultiple,hasMultiple,0,1,1,0,0,0
+warthunder,68900,18262,Simulation,Hybrid,0,Gaijin Entertainment,Gaijin Network Ltd,1,1,0,2,0,0
+witcher3,25986,7408,RPG,Singleplayer,39.99,CD PROJEKT RED,CD PROJEKT RED,0,1,1,1,0,0
+wukong,39464,21504,RPG,Singleplayer,59.99,Game Science,Game Science,0,1,1,2,0,0
+yugiohmasterduel,16661,3313,Strategy,Hybrid,0,KONAMI,KONAMI,0,1,0,0,0,0
+zomboid,39926,6959,Survival,Hybrid,19.99,The Indie Stone,The Indie Stone,1,0,0,1,0,0
