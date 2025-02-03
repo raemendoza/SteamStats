@@ -17,13 +17,10 @@ Within GameData, you can find:
 - `Stat Data`: Contains a generated descriptive file with mean and standard deviations of Averaged Data. The `_edited` version was manually curated using Steam store page and includes various parameters for analyses:
 
 ## To-Do List
-- Figure out how to add more Genre depth
-- Run graphs on descriptives to visualize data
-- Perform regressions or predictive models to see if data is explainable by other parameters.
-- Refine manually inserted data for better methodological accuracy.
+- Visualize the rest of the data
 
 ## Paramaters in Data
-  * **Genre**: The type of game, arbitratily judged. This is planned to be split into various subgenres or a potential vector representation for better depth of game type
+  * **Genre_1 to 5**: Five common tags used for the game within the Steam store
   * **Player**: The amount of players possible in a session (Singleplayer, Multiplayer or Hybrid). Does not disambiguate between PvP, PvE, and Co-Op
   * **Developer**: uses 'hasMultiple' if there is more than one
   * **Publisher**: same exception as Developer
