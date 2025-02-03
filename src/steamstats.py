@@ -232,61 +232,41 @@ def genre_stats(data_dir):
     # Combine dummy codes with mean values
     result = pd.concat([df[['Mean']], genre_coded], axis=1)
 
-    # # Compute correlations for each genre
-    # correlation_results = []
-    #
-    # for genre in genre_coded.columns:
-    #     correlation, p_value = pearsonr(result['Mean'], result[genre])
-    #
-    #     sig = '*' if p_value < 0.05 else ''
-    #     correlation_results.append((genre, correlation, p_value, sig))
-    #
-    # # Correlation size quick function
-    # def get_correlation_magnitude(item):
-    #     return abs(item[1])
-    #
-    # # Sort by correlation magnitude
-    # correlation_results.sort(key=get_correlation_magnitude, reverse=True)
-    #
-    # # Print the sorted results
-    # for genre, correlation, p_value, sig in correlation_results:
-    #     print(f'Correlation between Mean and {genre}: r = {correlation:.3f}, p = {p_value:.3f} {sig}')
+    # Initialize correlations list to print
+    correlation_results = []
 
-    # Calculate correlation matrix
+    for genre in genre_coded.columns:
+        correlation, p_value = pearsonr(result['Mean'], result[genre])
+
+        sig = '*' if p_value < 0.05 else ''
+        correlation_results.append((genre, correlation, p_value, sig))
+
+    # Correlation size quick function
+    def get_correlation_magnitude(item):
+        return abs(item[1])
+
+    # Sort by correlation magnitude
+    correlation_results.sort(key=get_correlation_magnitude, reverse=True)
+
+    # Print the sorted results
+    for genre, correlation, p_value, sig in correlation_results:
+        print(f'Correlation between Mean and {genre}: r = {correlation:.3f}, p = {p_value:.3f} {sig}')
+
+
+    # Calculate correlation matrix for genres
     correlation_matrix = result.corr(method='pearson')
 
-    # # Plotting the correlation heatmap
-    # plt.figure(figsize=(90,75), dpi=300)
-    # sns.heatmap(
-    #     correlation_matrix,
-    #     annot=True,  # Display correlation values
-    #     fmt=".2f",  # Format the correlation values
-    #     cmap='coolwarm',  # Color palette for easy visualization
-    #     center=0,  # Center the color gradient at 0
-    #     square=True,  # Keep the heatmap cells square-shaped
-    #     linewidths=0.5,  # Add lines between cells
-    #     cbar_kws={"shrink": 0.75}  # Adjust color bar size
-    # )
-    #
-    # # Customize the plot
-    # plt.title('Correlation Matrix across Genre and Mean', fontsize=16)
-    # plt.xticks(rotation=90, fontsize=12)
-    # plt.yticks(rotation=0, fontsize=12)
-    # plt.savefig('correlation_matrix.png', bbox_inches='tight')
-    #
-    # plt.close()
-
-    # Convert the correlation matrix to a long format for Plotly
+    # Convert for Plotly
     correlation_long = correlation_matrix.reset_index().melt(id_vars='index')
     correlation_long.columns = ['Variable 1', 'Variable 2', 'Correlation']
 
-    # Plotly heatmap
+    # Initiate plotly
     fig = px.imshow(
         correlation_matrix,
-        text_auto=".2f",  # Show correlation values inside cells
-        color_continuous_scale='RdBu',  # Red-Blue color scale
-        zmin=-1, zmax=1,  # Set the color scale range
-        aspect="auto",  # Auto-adjust aspect ratio
+        text_auto=".2f",  # Show values
+        color_continuous_scale='RdBu',
+        zmin=-1, zmax=1,  # Set the color range
+        aspect="auto",
     )
 
     # Customize hover information
@@ -296,16 +276,35 @@ def genre_stats(data_dir):
 
     # Add title and improve layout
     fig.update_layout(
-        title='Interactive Correlation Matrix: Genres and Mean',
-        xaxis_title='Variables',
-        yaxis_title='Variables',
+        title='Interactive Genres Matrix',
         xaxis_tickangle=-45,
         width=1000,  # Adjust width for large matrices
         height=1000,  # Adjust height for large matrices
     )
 
-    # Show the interactive plot in your default web browser
+    # Write file
     fig.write_html("interactive_correlation_matrix.html")
+
+    #  Correlation heatmap figure (high res)
+    plt.figure(figsize=(90,75), dpi=300)
+    sns.heatmap(
+        correlation_matrix,
+        annot=True,  # Display correlation values
+        fmt=".2f",  # Format the correlation values
+        cmap='coolwarm',  # Color palette for easy visualization
+        center=0,  # Center the color gradient at 0
+        square=True,  # Keep the heatmap cells square-shaped
+        linewidths=0.5,  # Add lines between cells
+        cbar_kws={"shrink": 0.75}  # Adjust color bar size
+    )
+
+    # Customize the plot
+    plt.title('Correlation Matrix across Genre and Mean', fontsize=16)
+    plt.xticks(rotation=90, fontsize=12)
+    plt.yticks(rotation=0, fontsize=12)
+    plt.savefig('correlation_matrix.png', bbox_inches='tight')
+
+    plt.close()
 
 
 
