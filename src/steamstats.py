@@ -1,6 +1,9 @@
+import csv
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
+from scipy.stats import pearsonr
 
 def csv_processor(source_dir, filtered_dir, start_date):
     """
@@ -40,27 +43,27 @@ def csv_processor(source_dir, filtered_dir, start_date):
 
             try:
                 # Read file, ensure column match, filter date from parameter, & apply time round function
-                dataframe = pd.read_csv(file_path)
-                dataframe['DateTime'] = pd.to_datetime(dataframe['DateTime'], errors='coerce')
-                dataframe = dataframe[dataframe['DateTime'] >= start_date]
-                dataframe['RoundedHour'] = dataframe['DateTime'].apply(time_round)
+                df = pd.read_csv(file_path)
+                df['DateTime'] = pd.to_datetime(df['DateTime'], errors='coerce')
+                df = df[df['DateTime'] >= start_date]
+                df['RoundedHour'] = df['DateTime'].apply(time_round)
 
                 # Split the two :30 minutes rounded up and down
-                dataframe = dataframe.explode('RoundedHour')
+                df = df.explode('RoundedHour')
 
                 # Change Column name when the title is a software instead of a game
-                if 'Players' not in dataframe.columns and 'Users' in dataframe.columns:
-                    dataframe.rename(columns={'Users': 'Players'}, inplace=True)
+                if 'Players' not in df.columns and 'Users' in df.columns:
+                    df.rename(columns={'Users': 'Players'}, inplace=True)
 
                 # Group the rounded hours together and average
                 hour_avg_df = (
-                    dataframe.groupby('RoundedHour')['Players']
+                    df.groupby('RoundedHour')['Players']
                     .mean()
                     .reset_index()
                     .rename(columns={'RoundedHour': 'DateTime', 'Players': 'AvgPlayers'})
                 )
 
-                # Save the new dataframe to the filtered directory
+                # Save the new df to the filtered directory
                 output_file_path = os.path.join(filtered_dir, f"filtered_{filename}")
                 hour_avg_df.to_csv(output_file_path, index=False)
                 print(f'Processed file saved in {output_file_path}')
@@ -93,22 +96,22 @@ def daily_avg(filtered_dir, averaged_dir, timezone = 'UTC'):
 
             try:
                 # Read file and ensure valid columns
-                dataframe = pd.read_csv(file_path)
-                if 'DateTime' not in dataframe.columns:
+                df = pd.read_csv(file_path)
+                if 'DateTime' not in df.columns:
                     print(f'Error! "DateTime" column not found in {filename}. Skipping file...')
                     continue
 
                 # Ensure DateTime column is read appropriately
-                dataframe['DateTime'] = pd.to_datetime(dataframe['DateTime'], errors='coerce')
+                df['DateTime'] = pd.to_datetime(df['DateTime'], errors='coerce')
                 # Make DateTime the index, localize it to UTC, then change time zone appropriately
-                dataframe = dataframe.set_index('DateTime')  # Set DateTime as index
-                dataframe = dataframe.tz_localize('UTC', ambiguous='NaT')  # Assume timestamps are in UTC
+                df = df.set_index('DateTime')  # Set DateTime as index
+                df = df.tz_localize('UTC', ambiguous='NaT')  # Assume timestamps are in UTC
                 if timezone != 'UTC':
-                    dataframe = dataframe.tz_convert(timezone)
+                    df = df.tz_convert(timezone)
 
                 # Extract hours from DateTime in index, then average them across
-                dataframe['Hour'] = dataframe.index.hour
-                daily_avg_df = dataframe.groupby('Hour')['AvgPlayers'].mean().reset_index()
+                df['Hour'] = df.index.hour
+                daily_avg_df = df.groupby('Hour')['AvgPlayers'].mean().reset_index()
 
                 # Save file
                 output_file_path = os.path.join(averaged_dir, f"daily_avg_{filename}")
@@ -152,18 +155,18 @@ def desc_stats(averaged_dir, output_dir):
                 game_names.append(game_name)
 
                 # Read csv file
-                dataframe = pd.read_csv(file_path)
+                df = pd.read_csv(file_path)
 
                 # Remove Hour column, extract statistics, transpose and remove index, then add game name
-                dataframe.pop('Hour')
-                means.append(dataframe.mean()['AvgPlayers'])
-                std_devs.append(dataframe.std()['AvgPlayers'])
+                df.pop('Hour')
+                means.append(df.mean()['AvgPlayers'])
+                std_devs.append(df.std()['AvgPlayers'])
 
 
             except Exception as e:
                 print(f'Error processing {filename} due to: {e}')
 
-    final_stats = pd.DataFrame({
+    final_stats = pd.df({
         'Game': game_names,
         'Mean': means,
         'SD': std_devs
@@ -171,7 +174,7 @@ def desc_stats(averaged_dir, output_dir):
 
     final_stats.to_csv(os.path.join(output_dir, 'Descriptives.csv'), index=False)
 
-def graph_stats(data_dir):
+def data_stats(data_dir):
     """
     This function reads a data file within a directory and generates graphs using various parameters and graph types
     
@@ -181,3 +184,50 @@ def graph_stats(data_dir):
 
     # Read the CSV file
     df = pd.read_csv(data_dir)
+
+    # Run Correlation between player averages / year and booleans.
+    bool_cols = ['isIndie','hasAchv','hasSteamCloud','accountRequired','hasKernel']
+    vars = ['Mean', 'Year', 'Price']
+    df[bool_cols] = df[bool_cols].astype(bool)
+    # Count the Player columm with hasSteamCloud = True
+
+    df_playertype = (
+        df
+        .groupby("Player")
+        .apply(
+            lambda group: group.hasSteamCloud.eq(False).sum()
+        )
+    )
+
+    print(f'Amount of games without Steam Cloud: \n{df_playertype.to_string()}')
+
+
+    # for var in vars:
+    #     for col in bool_cols:
+    #         y = pearsonr(df[var], df[col])
+    #         if y.pvalue < 0.05:
+    #             sig = '*'
+    #         else:
+    #             sig = ''
+    #         print(f'Correlation between {var} and {col}: r = {y.statistic}, p = {y.pvalue} {sig}')
+    #     print('\n')
+    #
+    # print(pearsonr(df['Price'], df['Year']))
+
+
+
+    # plt.figure(figsize = (12,6))
+    # plt.scatter(df['Year'], df['Mean'], color = 'red', s=5)
+    # plt.xticks(np.arange(df["Year"].min(), df["Year"].max()+1, 1))
+    # plt.xlabel('Year')
+    # plt.ylabel('Mean Players')
+    # plt.title('Players across Games released by Year')
+    #
+    # plt.xticks(rotation = 45)
+    # plt.show()
+
+
+
+
+
+
