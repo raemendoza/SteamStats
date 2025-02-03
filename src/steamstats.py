@@ -4,6 +4,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import pearsonr
+import seaborn as sns
+import plotly.express as px
 
 def csv_processor(source_dir, filtered_dir, start_date):
     """
@@ -175,11 +177,11 @@ def desc_stats(averaged_dir, output_dir):
     final_stats.to_csv(os.path.join(output_dir, 'Descriptives.csv'), index=False)
 
 def data_stats(data_dir):
+
     """
     This function reads a data file within a directory and generates graphs using various parameters and graph types
     
     :param data_dir: Directory containing the daily-average files.
-    :return: 
     """
 
     # Read the CSV file
@@ -202,30 +204,108 @@ def data_stats(data_dir):
     print(f'Amount of games without Steam Cloud: \n{df_playertype.to_string()}')
 
 
-    # for var in vars:
-    #     for col in bool_cols:
-    #         y = pearsonr(df[var], df[col])
-    #         if y.pvalue < 0.05:
-    #             sig = '*'
-    #         else:
-    #             sig = ''
-    #         print(f'Correlation between {var} and {col}: r = {y.statistic}, p = {y.pvalue} {sig}')
-    #     print('\n')
+    for var in vars:
+        for col in bool_cols:
+            y = pearsonr(df[var], df[col])
+            if y.pvalue < 0.05:
+                sig = '*'
+            else:
+                sig = ''
+            print(f'Correlation between {var} and {col}: r = {y.statistic:.3f}, p = {y.pvalue:.3f} {sig}')
+        print('\n')
+
+    print(pearsonr(df['Price'], df['Year']))
+
+def genre_stats(data_dir):
+    '''
+    Quick genre dummy code followed by correlations
+    :param data_dir:
+    '''
+
+    # Read the file
+    df = pd.read_csv(data_dir)
+
+    # Obtain genres and dummy code
+    genres = df[['Genre_1', 'Genre_2', 'Genre_3', 'Genre_4', 'Genre_5']].agg(','.join, axis=1)
+    genre_coded = genres.str.get_dummies(sep=',')
+
+    # Combine dummy codes with mean values
+    result = pd.concat([df[['Mean']], genre_coded], axis=1)
+
+    # # Compute correlations for each genre
+    # correlation_results = []
     #
-    # print(pearsonr(df['Price'], df['Year']))
-
-
-
-    # plt.figure(figsize = (12,6))
-    # plt.scatter(df['Year'], df['Mean'], color = 'red', s=5)
-    # plt.xticks(np.arange(df["Year"].min(), df["Year"].max()+1, 1))
-    # plt.xlabel('Year')
-    # plt.ylabel('Mean Players')
-    # plt.title('Players across Games released by Year')
+    # for genre in genre_coded.columns:
+    #     correlation, p_value = pearsonr(result['Mean'], result[genre])
     #
-    # plt.xticks(rotation = 45)
-    # plt.show()
+    #     sig = '*' if p_value < 0.05 else ''
+    #     correlation_results.append((genre, correlation, p_value, sig))
+    #
+    # # Correlation size quick function
+    # def get_correlation_magnitude(item):
+    #     return abs(item[1])
+    #
+    # # Sort by correlation magnitude
+    # correlation_results.sort(key=get_correlation_magnitude, reverse=True)
+    #
+    # # Print the sorted results
+    # for genre, correlation, p_value, sig in correlation_results:
+    #     print(f'Correlation between Mean and {genre}: r = {correlation:.3f}, p = {p_value:.3f} {sig}')
 
+    # Calculate correlation matrix
+    correlation_matrix = result.corr(method='pearson')
+
+    # # Plotting the correlation heatmap
+    # plt.figure(figsize=(90,75), dpi=300)
+    # sns.heatmap(
+    #     correlation_matrix,
+    #     annot=True,  # Display correlation values
+    #     fmt=".2f",  # Format the correlation values
+    #     cmap='coolwarm',  # Color palette for easy visualization
+    #     center=0,  # Center the color gradient at 0
+    #     square=True,  # Keep the heatmap cells square-shaped
+    #     linewidths=0.5,  # Add lines between cells
+    #     cbar_kws={"shrink": 0.75}  # Adjust color bar size
+    # )
+    #
+    # # Customize the plot
+    # plt.title('Correlation Matrix across Genre and Mean', fontsize=16)
+    # plt.xticks(rotation=90, fontsize=12)
+    # plt.yticks(rotation=0, fontsize=12)
+    # plt.savefig('correlation_matrix.png', bbox_inches='tight')
+    #
+    # plt.close()
+
+    # Convert the correlation matrix to a long format for Plotly
+    correlation_long = correlation_matrix.reset_index().melt(id_vars='index')
+    correlation_long.columns = ['Variable 1', 'Variable 2', 'Correlation']
+
+    # Plotly heatmap
+    fig = px.imshow(
+        correlation_matrix,
+        text_auto=".2f",  # Show correlation values inside cells
+        color_continuous_scale='RdBu',  # Red-Blue color scale
+        zmin=-1, zmax=1,  # Set the color scale range
+        aspect="auto",  # Auto-adjust aspect ratio
+    )
+
+    # Customize hover information
+    fig.update_traces(
+        hovertemplate='<b>%{x}</b> & <b>%{y}</b><br>Correlation: %{z:.2f}<extra></extra>'
+    )
+
+    # Add title and improve layout
+    fig.update_layout(
+        title='Interactive Correlation Matrix: Genres and Mean',
+        xaxis_title='Variables',
+        yaxis_title='Variables',
+        xaxis_tickangle=-45,
+        width=1000,  # Adjust width for large matrices
+        height=1000,  # Adjust height for large matrices
+    )
+
+    # Show the interactive plot in your default web browser
+    fig.write_html("interactive_correlation_matrix.html")
 
 
 
